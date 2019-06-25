@@ -1,10 +1,10 @@
-package ru.bikert.test_task.connections;
+package ru.bikert.test_task.database;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.bikert.test_task.abstractions.MovieLoader;
 import ru.bikert.test_task.abstractions.MovieSaver;
 import ru.bikert.test_task.abstractions.models.Rating;
-import ru.bikert.test_task.connections.helpers.DateHelpers;
+import ru.bikert.test_task.database.helpers.DateHelpers;
 
 import java.util.*;
 
@@ -15,8 +15,8 @@ public class Main {
         context.scan("ru.bikert.test_task");
 
         context.refresh();
-        MovieSaver ms = (MovieSaver) context.getBean("movieService1");
-        MovieLoader mg = (MovieLoader) context.getBean("movieService1");
+        MovieSaver ms = (MovieSaver) context.getBean("movieService");
+        MovieLoader mg = (MovieLoader) context.getBean("movieService");
 
 
 //        for (int i = 0; i<100; i++) {
@@ -29,7 +29,7 @@ public class Main {
 //            double d = Math.random() * 1000;
 //            ms.upsertRating(new Rating(DateHelpers.getCurrentDate(), (double) Math.round(d * 100) / 100, movie));
 //        }
-        List<Rating> ratings = mg.loadTop(10, DateHelpers.getCurrentDate());
+        List<Rating> ratings = mg.loadTop(DateHelpers.getCurrentDate(), 10);
         System.out.println(ratings);
 
 

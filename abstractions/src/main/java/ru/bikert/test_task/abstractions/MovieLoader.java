@@ -6,5 +6,5 @@ import java.util.Calendar;
 import java.util.List;
 
 public interface MovieLoader {
-    List<Rating> loadTop(Integer countTOP, Calendar date);
+    List<Rating> loadTop(Calendar date, Integer limit);
 }

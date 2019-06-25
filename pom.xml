@@ -8,6 +8,7 @@
     <artifactId>test_tasks</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>importer</module>
         <module>webapp</module>
@@ -18,9 +19,50 @@
     <properties>
         <spring-context-version>5.1.8.RELEASE</spring-context-version>
         <hibernate-version>5.4.3.Final</hibernate-version>
+        <mysgl-version>8.0.16</mysgl-version>
     </properties>
 
     <dependencies>
+
+        <!--driver for connection to MYSql database -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysgl-version}</version>
+        </dependency>
+
+        <!-- Hibernate -->
+        <!-- to start need only this -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-version}</version>
+        </dependency>
+
+        <!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.4.3</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -88,11 +130,40 @@
 
     </dependencies>
     <build>
+        <finalName>webapp</finalName>
         <plugins>
+                <plugin>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <configuration>
+                        <modules>
+                            <module>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>importer</artifactId>
+                                <bundleFileName>importer.jar</bundleFileName>
+                            </module>
+                            <module>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>database</artifactId>
+                                <bundleFileName>database.jar</bundleFileName>
+                            </module>
+                            <module>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>abstractions</artifactId>
+                                <bundleFileName>abstractions.jar</bundleFileName>
+                            </module>
+                            <webModule>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>webapp</artifactId>
+                                <bundleFileName>webapp.war</bundleFileName>
+                            </webModule>
+                        </modules>
+                    </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -100,6 +171,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

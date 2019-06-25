@@ -1,4 +1,4 @@
-package ru.bikert.test_task.connections.dto;
+package ru.bikert.test_task.database.dto;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,8 @@ public class RatingID implements Serializable {
 
     @Column(name = "date")
     private Calendar date;
+
+    public RatingID() { }
 
     public RatingID(MovieDTO movie, Calendar date) {
         this.movie = movie;

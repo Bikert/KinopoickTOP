@@ -13,7 +13,7 @@ public class Main {
 
         initContext();
 
-        MovieSaver ms = (MovieSaver) context.getBean("movieService1");
+        MovieSaver ms = (MovieSaver) context.getBean("movieService");
 
         PageParser pageParser = new PageParser();
         List<Rating> ratings = pageParser.getRatings(Calendar.getInstance(), 200);

@@ -1,4 +1,4 @@
-package ru.bikert.test_task.connections.dto;
+package ru.bikert.test_task.database.dto;
 
 import com.sun.istack.NotNull;
 import ru.bikert.test_task.abstractions.models.Movie;
@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -37,6 +36,9 @@ public class MovieDTO {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public MovieDTO() {
     }
 
     public MovieDTO(Movie movie){

@@ -1,4 +1,4 @@
-package ru.bikert.test_task.connections.dto;
+package ru.bikert.test_task.database.dto;
 
 import ru.bikert.test_task.abstractions.models.Rating;
 
@@ -20,6 +20,9 @@ public class RatingDTO {
 
     @Column(name = "votes")
     private Integer votes;
+
+    public RatingDTO() {
+    }
 
     public RatingDTO(Rating rating) {
         MovieDTO movieDTO = new MovieDTO(rating.getMovie());
