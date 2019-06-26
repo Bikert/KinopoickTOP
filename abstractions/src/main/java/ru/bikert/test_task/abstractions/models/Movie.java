@@ -6,6 +6,10 @@ public class Movie {
     private String name;
     private Integer year;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Movie(Integer id, String name, Integer year) {
         this.id = id;
         this.name = name;

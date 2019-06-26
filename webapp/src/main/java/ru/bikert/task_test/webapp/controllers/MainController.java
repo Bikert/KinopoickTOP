@@ -1,7 +1,13 @@
 package ru.bikert.task_test.webapp.controllers;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ViewResolver;
 import ru.bikert.test_task.abstractions.MovieLoader;
+import ru.bikert.test_task.abstractions.models.Movie;
 import ru.bikert.test_task.abstractions.models.Rating;
 import ru.bikert.test_task.database.helpers.DateHelpers;
 
@@ -12,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+@Controller
 @RestController
 public class MainController {
 
@@ -43,6 +50,14 @@ public class MainController {
     public List<Rating> fetchUsers(@RequestParam(name = "limit", required = false) Integer limit) {
         return fetchUsers(null, limit);
     }
+
+
+//    @RequestMapping("/")
+//    public ModelAndView index () {
+//        ModelAndView modelAndView = new ModelAndView("main");
+//        modelAndView.addObject("ratings", fetchUsers(null, 10));
+//        return modelAndView;
+//    }
 
     private static Calendar parseDate(String stringDate) {
         if (stringDate == null) return null;

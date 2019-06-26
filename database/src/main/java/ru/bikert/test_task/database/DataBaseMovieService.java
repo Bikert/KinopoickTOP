@@ -1,6 +1,5 @@
 package ru.bikert.test_task.database;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,7 +27,6 @@ import static ru.bikert.test_task.database.helpers.DateHelpers.getDate;
 //@Transactional
 public class DataBaseMovieService implements MovieSaver, MovieLoader {
 
-    protected static Logger logger = Logger.getLogger(DataBaseMovieService.class);
 
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
@@ -100,7 +98,6 @@ public class DataBaseMovieService implements MovieSaver, MovieLoader {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<RatingDTO> cr = cb.createQuery(RatingDTO.class);
             Root<RatingDTO> root = cr.from(RatingDTO.class);
-
             cr.select(root).where(
                     cb.equal(root.get("id").get("date"), date));
             cr.orderBy(cb.desc(root.get("rating")));

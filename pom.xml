@@ -16,10 +16,16 @@
         <module>abstractions</module>
     </modules>
 
+
     <properties>
+        <logstash.port>10001</logstash.port>
+        <logger.console.tresholdFilter>ALL</logger.console.tresholdFilter>
+        <logger.socket.tresholdFilter>OFF</logger.socket.tresholdFilter>
         <spring-context-version>5.1.8.RELEASE</spring-context-version>
         <hibernate-version>5.4.3.Final</hibernate-version>
         <mysgl-version>8.0.16</mysgl-version>
+        <postgresql-version>42.2.5</postgresql-version>
+        <spring-boot-version>2.1.5.RELEASE</spring-boot-version>
     </properties>
 
     <dependencies>
@@ -38,39 +44,26 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-
-        <!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>apache-log4j-extras</artifactId>
-            <version>1.2.17</version>
+            <version>${postgresql-version}</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>2.4.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context-version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -86,34 +79,32 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <version>2.1.9.RELEASE</version>
         </dependency>
 
         <!-- Hibernate -->
-        <!-- to start need only this -->
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
 
-        <!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>apache-log4j-extras</artifactId>
-            <version>1.2.17</version>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>2.1.6.RELEASE</version>
+            <version>${spring-boot-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot-version}</version>
         </dependency>
 
         <dependency>
@@ -128,37 +119,50 @@
             <version>2.1.5.RELEASE</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-context-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>webapp</finalName>
         <plugins>
-                <plugin>
-                    <artifactId>maven-ear-plugin</artifactId>
-                    <version>3.0.1</version>
-                    <configuration>
-                        <modules>
-                            <module>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>importer</artifactId>
-                                <bundleFileName>importer.jar</bundleFileName>
-                            </module>
-                            <module>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>database</artifactId>
-                                <bundleFileName>database.jar</bundleFileName>
-                            </module>
-                            <module>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>abstractions</artifactId>
-                                <bundleFileName>abstractions.jar</bundleFileName>
-                            </module>
-                            <webModule>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>webapp</artifactId>
-                                <bundleFileName>webapp.war</bundleFileName>
-                            </webModule>
-                        </modules>
-                    </configuration>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <modules>
+                        <module>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>importer</artifactId>
+                            <bundleFileName>importer.jar</bundleFileName>
+                        </module>
+                        <module>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>database</artifactId>
+                            <bundleFileName>database.jar</bundleFileName>
+                        </module>
+                        <module>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>abstractions</artifactId>
+                            <bundleFileName>abstractions.jar</bundleFileName>
+                        </module>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>webapp</artifactId>
+                            <bundleFileName>webapp.war</bundleFileName>
+                        </webModule>
+                    </modules>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

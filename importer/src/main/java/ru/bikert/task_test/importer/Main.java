@@ -1,16 +1,17 @@
+package ru.bikert.task_test.importer;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.bikert.test_task.abstractions.MovieSaver;
 import ru.bikert.test_task.abstractions.models.Rating;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
 
     private final static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();;
     public static void main(String[] args) {
-
+        printMessage("Hello");
         initContext();
 
         MovieSaver ms = (MovieSaver) context.getBean("movieService");
@@ -32,6 +33,10 @@ public class Main {
 
     private static void closeContext(){
         context.close();
+    }
+
+    private static void printMessage(String message){
+        System.out.println(message);
     }
 
 

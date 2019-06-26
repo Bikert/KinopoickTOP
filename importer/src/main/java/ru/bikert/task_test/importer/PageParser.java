@@ -1,3 +1,5 @@
+package ru.bikert.task_test.importer;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import ru.bikert.test_task.abstractions.models.Movie;
