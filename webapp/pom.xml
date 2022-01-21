@@ -13,7 +13,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <hazelcast-version>3.12.1</hazelcast-version>
+        <hazelcast-version>4.0.5</hazelcast-version>
     </properties>
     <dependencies>
         <dependency>
