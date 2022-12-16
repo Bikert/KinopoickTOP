@@ -21,7 +21,7 @@
         <logstash.port>10001</logstash.port>
         <logger.console.tresholdFilter>ALL</logger.console.tresholdFilter>
         <logger.socket.tresholdFilter>OFF</logger.socket.tresholdFilter>
-        <spring-context-version>5.1.8.RELEASE</spring-context-version>
+        <spring-context-version>5.2.20.RELEASE</spring-context-version>
         <hibernate-version>5.4.3.Final</hibernate-version>
         <mysgl-version>8.0.16</mysgl-version>
         <postgresql-version>42.2.5</postgresql-version>
